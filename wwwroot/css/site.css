@@ -1,0 +1,57 @@
+.info{
+    width: 180px;
+    margin-bottom: 10px;
+}
+
+button {
+    margin-top: 15px;
+}
+h1{
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
+u{
+    margin-left: 50px;
+}
+
+#container1 {
+    width: 500px;
+    height: 380px;
+    display: inline-block;
+    vertical-align: top;   
+    border: solid black; 
+    padding: 10px;
+}
+
+#container2 {
+    width: 500px;
+    height: 380px;;
+    display: inline-block;
+    vertical-align: top;   
+    margin-left: 20px; 
+     border: solid black; 
+    padding: 10px;
+}
+
+h1{
+    display: inline-block;
+}
+
+#logout{
+    display: inline-block;
+}
+#logout1{
+    margin-left: 518px;
+}
+    
+#dash{
+    margin-left: 600px;
+}
+h2{
+    margin-right: 400px;
+    display: inline-block;
+}
+#log{
+    display: inline-block;
+}

@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Wedding Planner";
+}
+<h2>@ViewBag.List.wed_one & @ViewBag.List.wed_two's wedding</h2>
+
+<a href="/dashboard"><button type="submit">dashboard</button></a>
+<form  id = "log" action="/logout" method="POST">
+    <input type="submit" name="submit" value="Logout">
+</form>
+<br>
+    @{
+        DateTime CurrentTime = DateTime.Now;
+        string format = "MMM d, yyyy ";
+        <p>Date: @ViewBag.List.date.ToString(format)</p>
+        }   
+<br>
+
+<b>Guests:</b><br>
+@foreach (var i in @ViewBag.List.WedGuestList)
+{
+    <ul style="list-style: none;">
+        <li> @i.User.first_name @i.User.last_name</li>
+    </ul> 
+}
+
+<br>
+
+
+<iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA1W_5heTqaDrvCJYkBHBfODpZZgkQkvls
+    &q=@ViewBag.List.address" allowfullscreen>
+</iframe>

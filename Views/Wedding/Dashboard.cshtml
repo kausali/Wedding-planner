@@ -1,0 +1,70 @@
+@{
+    ViewData["Title"] = "Wedding Planner";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<h1>Welcome to the Wedding Planner</h1>
+<form action="/logout" method="POST" id="logout">
+    <input id ="logout1" type="submit" name="submit" value="Logout">
+</form>
+<table class="table table-bordered">
+    <tr>
+        <th>Wedding</th>
+        <th>Date</th>
+        <th>Guest</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var wedding in ViewBag.Allweddings)
+        {
+            <tr>
+                <td><a href="Guest/Detail/@wedding.weddingID">@wedding.wed_one & @wedding.wed_two</a></td>
+                @{
+                    DateTime CurrentTime = DateTime.Now;
+                    string format = "MMM d, yyyy ";
+                <td>@wedding.date.ToString(format)</td>
+                }   
+                <td>@wedding.WedGuestList.Count</td>
+                @if(@ViewBag.MySession == @wedding.userId)
+                {
+                    <form action="/delete/@wedding.weddingID" method="POST">
+                        <td><input type="submit" value="Delete" style="background:transparent; border:none;"></td>
+                    </form>
+                }
+                else
+                {
+                    bool status = false; 
+                    @foreach (var guest in ViewBag.guests)
+                    {
+                        @if(@ViewBag.MySession == @guest.userID && @wedding.weddingID == @guest.weddingID)
+                        {
+                            status = true;
+                        }
+                    }
+
+
+                    @if (status == true)
+                    {
+                            <form action="/unrsvp/@wedding.weddingID" method="POST">
+                                <td><input type="submit" value="UNRSVP" style="background:transparent; border:none;"></td>
+                            </form>
+                    }
+                    else
+                        {
+                            <form action="/rsvp/@wedding.weddingID" method="POST">
+                                <td><input type="submit" value="RSVP" style="background:transparent; border:none;"></td>
+                            </form>
+                        }    
+                }
+
+        
+            </tr>
+        }
+</table>
+
+<a href="/NewWedding"><button type="submit">New Wedding</button></a><br>
+
+
+<h5 style="color:red">@ViewBag.remove</h5>
+<h5 style="color:red">@ViewBag.Rsvp</h5>
+<h5 style="color:red">@ViewBag.Delete</h5>

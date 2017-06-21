@@ -1,0 +1,57 @@
+@{
+    ViewData["Title"] = "Wedding Planner";
+}
+<div id ="container1">
+<h1>Register</h1>
+
+    <form action="/register" method="POST">
+        <label for="first_name" class="info">First Name: </label>
+        <input type="text" name="first_name" id="first_name"><br>
+
+        <label for="last_name" class="info">Last Name: </label>
+        <input type="text" name="last_name" id="last_name"><br>
+
+        <label for="email" class="info">Email: </label>
+        <input type="email" name="email" id="email"><br>
+
+        <label for="password" class="info">Password: </label>
+        <input type="password" name="password" id="password"><br>
+
+        <label for="config_password" class="info">Confirm Password: </label>
+        <input type="password" name="config_password" id="config_password"><br>
+
+        <button type="submit" name="submit">Submit</button>
+    </form>
+
+@ViewBag.UserExists
+</div>
+
+
+<div id="container2">
+<h1>Login</h1>
+    <form action="/login" method="POST">
+
+        <label for="email" class="info">Email: </label>
+        <input type="email" name="email" id="email"><br>
+
+        <label for="password" class="info">Password: </label>
+        <input type="password" name="password" id="password"><br>
+
+        <button type="submit" name="submit">Submit</button> </form>
+
+</div>
+<p style= "color: red">@ViewBag.LoginError</p>  
+
+@if (ViewBag.Status == "errors"){
+    foreach(var error in ViewBag.errors)
+        {
+            //If there are any errors for a field...
+            if(@error.Errors.Count > 0)
+            {
+                // We show the first error for that field
+                <p>@error.Errors[0].ErrorMessage</p>
+            }
+        }
+  } 
+
+  @ViewBag.register
